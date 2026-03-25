@@ -2,10 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+custom_dataset/New2/
 # C extensions
 *.so
-
+prism-qwen25-extra-dinosiglip-224px-0_5b/
 # Distribution / packaging
 .Python
 build/

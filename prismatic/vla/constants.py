@@ -53,6 +53,13 @@ BRIDGE_CONSTANTS = {
     "ACTION_PROPRIO_NORMALIZATION_TYPE": NormalizationType.BOUNDS_Q99,
 }
 
+NEEDLE_CONSTANTS = {
+    "NUM_ACTIONS_CHUNK": 8,
+    "ACTION_DIM": 7,
+    "PROPRIO_DIM": 8,
+    "ACTION_PROPRIO_NORMALIZATION_TYPE": NormalizationType.BOUNDS_Q99,
+}
+
 
 # Function to detect robot platform from command line arguments
 def detect_robot_platform():
@@ -60,6 +67,8 @@ def detect_robot_platform():
 
     if "libero" in cmd_args:
         return "LIBERO"
+    elif "needle" in cmd_args:
+        return "NEEDLE"
     elif "aloha" in cmd_args:
         return "ALOHA"
     elif "bridge" in cmd_args:
@@ -77,6 +86,8 @@ ROBOT_PLATFORM = detect_robot_platform()
 # Set the appropriate constants based on the detected platform
 if ROBOT_PLATFORM == "LIBERO":
     constants = LIBERO_CONSTANTS
+elif ROBOT_PLATFORM == "NEEDLE":
+    constants = NEEDLE_CONSTANTS
 elif ROBOT_PLATFORM == "ALOHA":
     constants = ALOHA_CONSTANTS
 elif ROBOT_PLATFORM == "BRIDGE":

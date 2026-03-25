@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="EYE_PHAMTOM.SLDASM">
+
+  <link name="Trocar_plate">
+    <inertial>
+      <origin xyz="-0.010284 0.0012129 -0.024908" rpy="0 0 0" />
+      <mass value="0.030295" />
+      <inertia ixx="1.5333E-05" ixy="-4.7674E-22" ixz="-4.3837E-22" iyy="2.53E-05" iyz="-1.0486E-19" izz="4.0328E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Trocar_plate.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Trocar_plate.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Trocar_cover">
+    <inertial>
+      <origin xyz="0 2.1684E-19 0.0031894" rpy="0 0 0" />
+      <mass value="0.051623" />
+      <inertia ixx="1.8441E-05" ixy="-6.6852E-38" ixz="-1.2085E-22" iyy="1.8441E-05" iyz="-1.0609E-38" izz="1.698E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Trocar_cover.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Trocar_cover.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Cover" type="revolute">
+    <origin xyz="-0.010284 0.006 0.0012129" rpy="1.5708 0 0" />
+    <parent link="Trocar_plate" />
+    <child link="Trocar_cover" />
+    <axis xyz="0 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+
+  <link name="Trocar_gripper">
+    <inertial>
+      <origin xyz="6.15921593302357E-08 0.00866204485646013 -8.45455101743803E-08" rpy="0 0 0" />
+      <mass value="0.000465099979144033" />
+      <inertia ixx="4.62973137158684E-08" ixy="-3.59081407708454E-13" ixz="-2.4218954980201E-18" iyy="4.54118427502853E-08" iyz="4.83325739784747E-13" izz="4.62973137174286E-08" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Trocar_gripper.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Trocar_gripper.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gripper" type="revolute">
+    <origin xyz="0 0 0.005" rpy="1.5708 0 1.2559" />
+    <parent link="Trocar_cover" />
+    <child link="Trocar_gripper" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+
+  <link name="Eye_phantom">
+    <inertial>
+      <origin xyz="-0.012472312239797 -1.50679048680994E-05 -2.58139816005937E-05" rpy="0 0 0" />
+      <mass value="0.00166355152381348" />
+      <inertia ixx="1.67706142981398E-07" ixy="2.68078790732605E-10" ixz="-3.60065214288737E-10" iyy="1.50535164162634E-07" iyz="-2.37123987209198E-12" izz="1.51037126333486E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Eye_phantom.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Eye_phantom.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Eye_phantom" type="revolute">
+    <origin xyz="0 0 0" rpy="-0.67633 0 -1.5708" />
+    <parent link="Trocar_gripper" />
+    <child link="Eye_phantom" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+
+  <link name="Eye_trocar">
+    <inertial>
+      <origin xyz="0 3.03576608295941E-18 0.00446798310326308" rpy="0 0 0" />
+      <mass value="7.447930783498E-06" />
+      <inertia ixx="7.4544848639307E-12" ixy="-1.0097419586829E-28" ixz="-6.86624531904369E-27" iyy="7.4544848639307E-12" iyz="2.72630328844382E-27" izz="5.94805100211937E-12" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Eye_trocar.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.717647058823529 0.254901960784314 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="Eye_trocar.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Eye_trocar" type="revolute">
+    <origin xyz="-0.018742 -3.9168E-05 0.0062012" rpy="0.2922 -0.64361 -0.45715" />
+    <parent link="Eye_phantom" />
+    <child link="Eye_trocar" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+
+</robot>

@@ -1,0 +1,133 @@
+<mujoco model="meca_standalone">
+  <compiler angle="radian" meshdir="." balanceinertia="true" discardvisual="false"/>
+  <option gravity="0 0 -9.81" timestep="0.001" integrator="RK4"/>
+  <default>
+    <joint damping="0.5" frictionloss="0.2" armature="0.1"/>
+    <geom condim="4" solref="0.01 0.9" solimp="0.9 0.95 0.001"/>
+    <position ctrllimited="true"/> 
+  </default>
+
+  <asset>
+    <mesh name="base_link" file="STL/base_link.STL"/>
+    <mesh name="1_Link" file="STL/1_Link.STL"/>
+    <mesh name="2_Link" file="STL/2_Link.STL"/>
+    <mesh name="3_Link" file="STL/3_Link.STL"/>
+    <mesh name="4_Link" file="STL/4_Link.STL"/>
+    <mesh name="5_Link" file="STL/5_Link.STL"/>
+    <mesh name="6_Link" file="STL/6_Link.STL"/>
+    <mesh name="260107_Total_assembly_simplified" file="STL/260107_Total_assembly_simplified.STL" scale="0.001 0.001 0.001"/>
+    <mesh name="Optical_breadboard4560" file="STL/Optical_breadboard4560.STL" scale="0.001 0.001 0.001"/>
+    <mesh name="Optical_tabel90120" file="STL/Optical_tabel90120.STL" scale="0.001 0.001 0.001"/>
+    <mesh name="Optical_plate" file="STL/Optical_plate.STL" scale="0.001 0.001 0.001"/>
+    <mesh name="Trocar_plate" file="STL/Trocar_plate.STL"/>
+    <mesh name="Trocar_cover" file="STL/Trocar_cover.STL"/>
+    <mesh name="Trocar_gripper" file="STL/Trocar_gripper.STL"/>
+    <mesh name="Eye_phantom" file="STL/Eye_phantom.STL"/>
+    <mesh name="Eye_trocar" file="STL/Eye_trocar.STL"/>
+    <texture name="tex_noise_plastic" type="2d" file="textures/wax.png" rgb1="1 1 1" rgb2="0.9 0.9 0.9"/> 
+    <texture name="tex_scratch_metal" type="2d" file="textures/metal.png"/>
+    <texture name="tex_white_plastic" type="2d" file="textures/plastic.png"/> 
+    <material name="mat_yellow_resin" texture="tex_noise_plastic" 
+              rgba="0.95 0.92 0.6 1" 
+              specular="0.3" shininess="0.1" reflectance="0.3" 
+              texrepeat="5 5"/>
+    <material name="mat_dark_metal" texture="tex_scratch_metal" 
+              rgba="0.2 0.2 0.2 1" 
+              specular="0.8" shininess="0.8" reflectance="0.2" 
+              texrepeat="2 2"/>
+    <material name="mat_trocar_metal" texture="tex_scratch_metal" 
+              rgba="0.7 0.7 0.7 1" 
+              specular="0.8" shininess="0.8" reflectance="0.2" 
+              texrepeat="2 2"/>
+    <material name="mat_white_plastic" texture="tex_white_plastic"
+              rgba="0.95 0.9 0.9 1"
+              specular="0.2" shininess="0.1" reflectance="0.0"/>
+    <material name="mat_eye_sclera" texture="tex_noise_plastic"
+              rgba="0.95 0.95 0.9 1"
+              specular="0.9" shininess="0.8" reflectance="0.1"/>
+    <material name="mat_robot_metal"  texture="tex_scratch_metal"
+              rgba="0.8 0.8 0.8 1"
+              specular="0.9" shininess="0.9"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0.3 0.3 1.0" dir="-0.5 -0.5 -1" directional="true" castshadow="false" diffuse="0.5 0.5 0.5" specular="0.5 0.5 0.5"/>
+    <light pos="-0.3 -0.3 0.5" dir="0.5 0.5 -1" directional="true" castshadow="false" diffuse="0.2 0.2 0.2" specular="0.5 0.5 0.5"/>
+    <camera name="top_camera" mode="fixed" pos="0.45 -0.025 0.635" fovy="50" euler="0.1 0.6 1.5416"/>
+    <camera name="side_camera" mode="fixed" pos="-0.1 0.45 0.175" fovy="50" euler="-1.5708 -0.5 3.1416"/>
+    <geom type="mesh" mesh="base_link" pos="0 0.0125 0.0855" quat="0.707105 0 0 -0.707108" rgba="0.75 0.75 0.75 1" contype="0" conaffinity="0" group="1"/>
+    <geom size="0.046 0.02" pos="0 0 0.05" type="cylinder" rgba="0.74902 0.74902 0.74902 0"/>
+    <body name="1_Link">
+      <inertial pos="0.0265829 8.61087e-07 0.0187309" quat="0 0.707107 0 0.707107" mass="0.00110681" diaginertia="2.52756e-08 2.52736e-08 5.67803e-09"/>
+      <joint name="1" pos="0 0 0" axis="0 0 1" range="-3.0543 3.0543" actuatorfrcrange="-10 10"/>
+      <geom pos="0 0 0.081" quat="0.707105 0 0 -0.707108" type="mesh" material="mat_robot_metal" mesh="1_Link"/>
+      <body name="2_Link" pos="0 0 0.135">
+        <inertial pos="-0.011581 0.060433 0.025598" quat="0.707107 0 0 0.707107" mass="0.0014997" diaginertia="4.1011e-08 4.1007e-08 4.3707e-09"/>
+        <joint name="2" pos="0 0 0" axis="0 1 0" range="-1.2217 1.5708" actuatorfrcrange="-10 10"/>
+        <geom quat="0.707105 0.707108 0 0" type="mesh" material="mat_robot_metal" mesh="2_Link"/>
+        <body name="3_Link" pos="0 0 0.135">
+          <inertial pos="0.00863474 0.0130793 0.000472372" quat="0.610208 0.352554 -0.60274 0.37424" mass="0.369858" diaginertia="0.000449876 0.000401291 0.000237968"/>
+          <joint name="3" pos="0 0 0" axis="0 1 0" range="-2.3562 1.2217" actuatorfrcrange="-10 10"/>
+          <geom quat="0.707105 0.707108 0 0" type="mesh" material="mat_robot_metal" mesh="3_Link"/>
+          <body name="4_Link" pos="0 0 0.038">
+            <inertial pos="0.0268017 3.80505e-06 -0.0386581" quat="0.5 0.5 0.5 0.5" mass="5.45514e-05" diaginertia="4.37621e-10 4.37369e-10 6.1925e-11"/>
+            <joint name="4" pos="0 0 0" axis="1 0 0" range="-2.9671 2.9671" actuatorfrcrange="-10 10"/>
+            <geom pos="0.061 0 0" quat="0.499998 0.5 -0.500002 -0.5" type="mesh" material="mat_robot_metal" mesh="4_Link"/>
+            <body name="5_Link" pos="0.12 0 0">
+              <inertial pos="0.020511 2.54707e-06 0.000506959" quat="0.485292 0.514377 0.513772 0.485742" mass="0.164362" diaginertia="0.0001195 0.000115999 5.49467e-05"/>
+              <joint name="5" pos="0 0 0" axis="0 1 0" range="-2.0071 2.0071" actuatorfrcrange="-10 10"/>
+              <geom quat="0.707105 0.707108 0 0" type="mesh" material="mat_robot_metal" mesh="5_Link"/>
+              <body name="6_Link" pos="0.07 0 0" quat="0.707107 0 0.707107 0">
+                <inertial pos="-4.93382e-09 -3.06476e-06 -0.00515373" quat="0.499788 0.500212 -0.500212 0.499788" mass="0.00318159" diaginertia="1.633e-07 1.12762e-07 1.10035e-07"/>
+                <joint name="6" pos="0 0 0" axis="0 0 1" range="-6.2832 6.2832" actuatorfrcrange="-10 10"/>
+                <geom pos="0 0 -0.0125" quat="4.63268e-05 0 1 0" type="mesh" material="mat_robot_metal" mesh="6_Link"/>
+                <body name="260107_Total_assembly">
+                  <inertial pos="0 0 0" mass="0.2" diaginertia="0.001 0.001 0.001"/>
+                  <geom pos="-0.07475 -0.0805 -0.011" quat="0.965926 0 0 0.258819" type="mesh" material="mat_white_plastic" mesh="260107_Total_assembly_simplified" contype="0" conaffinity="0"/>
+                  <site name="needle_tip" pos="0 0 0.1775" size="0.001" rgba="1 0 0 0"/>
+                  <site name="needle_back" pos="0 0 0.1275" size="0.001" rgba="1 0 0 0"/>
+                  <camera name="tool_camera" mode="fixed" pos="-0.025 0.045 0.065" fovy="40" euler="0.5 3.3916 -0.453599"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom pos="0.275 0.59 -0.0135" quat="0.499998 0.5 -0.500002 -0.5" type="mesh" material="mat_dark_metal" mesh="Optical_breadboard4560"/>
+    <geom pos="0.575 0.689999 -0.1435" quat="0.499998 0.5 -0.500002 -0.5" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Optical_tabel90120"/>
+    <site name="viz_target_tip" pos="0 0 0" size="0.001" rgba="1 0 1 0"/>
+    <body name="phantom_assembly" pos="0 0 0">
+      <geom pos="0.274999 0.34 -0.0015" quat="0.499998 0.5 -0.500002 -0.5" type="mesh" material="mat_dark_metal" mesh="Optical_plate" contype="0" conaffinity="0"/>
+      <body name="rotating_assembly" pos="0.214998 0.165 0.11">
+        <geom pos="0 0 0" quat="0.499998 -0.5 0.500002 -0.5" type="mesh" material="mat_white_plastic" mesh="Trocar_plate" contype="0" conaffinity="0"/>
+        <body name="Trocar_cover" pos="0.001213 0.010284 -0.006" quat="0.707105 0 0 -0.707108">
+          <inertial pos="0 0 0.0031894" mass="0.051623" diaginertia="1.8441e-05 1.8441e-05 1.698e-05"/>
+          <geom type="mesh" material="mat_yellow_resin" mesh="Trocar_cover" contype="0" conaffinity="0"/>
+          <body name="Trocar_gripper" pos="0 0 0.005" quat="0.572213 0.572216 0.415417 0.415415">
+            <inertial pos="6.15922e-08 0.00866204 -8.45455e-08" quat="0.707107 0.707107 0 0" mass="0.0004651" diaginertia="4.62973e-08 4.62973e-08 4.54118e-08"/>
+            <geom type="mesh" material="mat_white_plastic" mesh="Trocar_gripper" contype="0" conaffinity="0"/>
+            <body name="Eye_phantom" quat="0.685123 0.174941 -0.174941 -0.685126">
+              <inertial pos="-0.0124723 -1.50679e-05 -2.5814e-05" quat="0.709403 0.704677 0.013154 -0.00207198" mass="0.00166355" diaginertia="1.67718e-07 1.51029e-07 1.50531e-07"/>
+              <geom type="mesh" material="mat_eye_sclera" mesh="Eye_phantom" contype="0" conaffinity="0"/>
+              <site name="trocar_depth" pos="-0.0075 0 -0.0075" size="0.001" rgba="1 0 0 0"/>
+              <body name="Eye_trocar" pos="-0.018742 -3.9168e-05 0.0062012" quat="0.924581 0.0636132 -0.336065 -0.167821">
+                <inertial pos="0 0 0.00446798" mass="7.44793e-06" diaginertia="7.45448e-12 7.45448e-12 5.94805e-12"/>
+                <geom type="mesh" material="mat_trocar_metal" mesh="Eye_trocar" contype="0" conaffinity="0"/>
+                <site name="trocar_target" pos="0 0 0.0075" size="0.001" rgba="0 1 0 0"/>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="motor_1" joint="1" kp="500" kv="50" ctrlrange="-3.05 3.05"/>
+    <position name="motor_2" joint="2" kp="500" kv="50" ctrlrange="-1.22 1.57"/>
+    <position name="motor_3" joint="3" kp="500" kv="50" ctrlrange="-2.35 1.22"/>
+    <position name="motor_4" joint="4" kp="200" kv="20" ctrlrange="-2.96 2.96"/>
+    <position name="motor_5" joint="5" kp="200" kv="20" ctrlrange="-2.00 2.00"/>
+    <position name="motor_6" joint="6" kp="200" kv="20" ctrlrange="-6.28 6.28"/>
+  </actuator>
+</mujoco>

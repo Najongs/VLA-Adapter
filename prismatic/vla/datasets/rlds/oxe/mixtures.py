@@ -193,6 +193,16 @@ OXE_NAMED_MIXTURES: Dict[str, List[Tuple[str, float]]] = {
         ("droid_wipe", 1.0),
     ],
 
+    # === Custom Needle Insertion Dataset ===
+    "needle_insertion": [
+        ("needle_insertion", 1.0),
+    ],
+
+    # === LIBERO Datasets (Original RLDS) ===
+    "libero_spatial": [
+        ("libero_spatial", 1.0),
+    ],
+
     # === LIBERO Datasets (Modified Versions) ===
     "libero_spatial_no_noops": [
         ("libero_spatial_no_noops", 1.0),

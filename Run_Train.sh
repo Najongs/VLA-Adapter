@@ -1,0 +1,26 @@
+CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 vla-scripts/finetune.py \
+    --vlm_path pretrained_models/prism-qwen25-extra-dinosiglip-224px-0_5b \
+    --config_file_path pretrained_models/configs \
+    --data_root_dir /data/public/NAS/LIBERO_modified \
+    --dataset_name libero_spatial \
+    --run_root_dir outputs \
+    --use_film False \
+    --num_images_in_input 2 \
+    --use_proprio True \
+    --use_lora True \
+    --use_fz False \
+    --use_minivlm True \
+    --image_aug True \
+    --num_steps_before_decay 100000 \
+    --max_steps 100005 \
+    --save_freq 5000 \
+    --save_latest_checkpoint_only False \
+    --merge_lora_during_training True \
+    --batch_size 6 \
+    --grad_accumulation_steps 1 \
+    --learning_rate 2e-4 \
+    --lora_rank 64 \
+    --use_pro_version True \
+    --wandb_entity "YOUR_WANDB_ENTITY" \
+    --wandb_project "libero_spatial" \
+    --run_id_note VLA-Adapter--libero_spatial--$current_time
