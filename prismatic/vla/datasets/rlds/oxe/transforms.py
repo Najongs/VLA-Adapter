@@ -947,8 +947,9 @@ OXE_STANDARDIZATION_TRANSFORMS = {
     "tdroid_cover_object_with_towel": tdroid_dataset_transform,
     ### DROID Finetuning datasets
     "droid_wipe": droid_finetuning_transform,
-    ### Custom needle insertion dataset
+    ### Custom needle insertion datasets
     "needle_insertion": libero_dataset_transform,
+    "needle_insertion2": libero_dataset_transform,
     ### LIBERO datasets (original RLDS)
     "libero_spatial": libero_dataset_transform,
     ### LIBERO datasets (modified versions)

@@ -168,6 +168,8 @@ class RLDSDataset(IterableDataset):
         # fmt: off
         if "aloha" in self.data_mix:
             load_camera_views = ("primary", "left_wrist", "right_wrist")
+        elif "needle" in self.data_mix:
+            load_camera_views = ("primary", "secondary", "wrist")
         else:
             load_camera_views = ("primary", "wrist")
 

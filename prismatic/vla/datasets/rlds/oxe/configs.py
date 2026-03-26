@@ -641,8 +641,15 @@ OXE_DATASET_CONFIGS = {
         "state_encoding": StateEncoding.POS_EULER,
         "action_encoding": ActionEncoding.EEF_POS,
     },
-    ### Custom needle insertion dataset
+    ### Custom needle insertion datasets
     "needle_insertion": {
+        "image_obs_keys": {"primary": "image", "secondary": "top_image", "wrist": "wrist_image"},
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "state_obs_keys": ["EEF_state", "gripper_state"],
+        "state_encoding": StateEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "needle_insertion2": {
         "image_obs_keys": {"primary": "image", "secondary": "top_image", "wrist": "wrist_image"},
         "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
         "state_obs_keys": ["EEF_state", "gripper_state"],

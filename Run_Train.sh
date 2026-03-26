@@ -2,10 +2,10 @@ CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 v
     --vlm_path pretrained_models/prism-qwen25-extra-dinosiglip-224px-0_5b \
     --config_file_path pretrained_models/configs \
     --data_root_dir /data/public/NAS/LIBERO_modified \
-    --dataset_name libero_spatial \
+    --dataset_name needle_all \
     --run_root_dir outputs \
     --use_film False \
-    --num_images_in_input 2 \
+    --num_images_in_input 3 \
     --use_proprio True \
     --use_lora True \
     --use_fz False \
@@ -16,11 +16,11 @@ CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 v
     --save_freq 5000 \
     --save_latest_checkpoint_only False \
     --merge_lora_during_training True \
-    --batch_size 6 \
+    --batch_size 4 \
     --grad_accumulation_steps 1 \
     --learning_rate 2e-4 \
     --lora_rank 64 \
     --use_pro_version True \
     --wandb_entity "YOUR_WANDB_ENTITY" \
-    --wandb_project "libero_spatial" \
-    --run_id_note VLA-Adapter--libero_spatial--$current_time
+    --wandb_project "needle_insertion" \
+    --run_id_note VLA-Adapter--needle_all--$current_time
