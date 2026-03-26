@@ -11,8 +11,8 @@ CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 v
     --use_fz False \
     --use_minivlm True \
     --image_aug True \
-    --num_steps_before_decay 100000 \
-    --max_steps 100005 \
+    --num_steps_before_decay 50000 \
+    --max_steps 50005 \
     --save_freq 5000 \
     --save_latest_checkpoint_only False \
     --merge_lora_during_training True \
@@ -21,6 +21,6 @@ CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 v
     --learning_rate 2e-4 \
     --lora_rank 64 \
     --use_pro_version True \
-    --wandb_entity "YOUR_WANDB_ENTITY" \
+    --wandb_entity "najyeol99-daegu-gyeongbuk-institute-of-science-technology" \
     --wandb_project "needle_insertion" \
-    --run_id_note VLA-Adapter--needle_all--$current_time
+    --run_id_note VLA-Adapter--needle_all--$current_time``

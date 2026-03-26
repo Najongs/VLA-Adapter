@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 custom_dataset/New2/
+dataset/
 # C extensions
 *.so
 prism-qwen25-extra-dinosiglip-224px-0_5b/

@@ -127,15 +127,15 @@ class RLDSBatchTransform:
 
         return_dict = dict(pixel_values=pixel_values, input_ids=input_ids, labels=labels, dataset_name=dataset_name, actions=actions)
 
-        # Add additional inputs
+        # Add additional inputs (wrist and secondary camera images)
         if self.use_wrist_image:
-            all_wrist_pixels = []
+            all_extra_pixels = []
             for k in rlds_batch["observation"].keys():
-                if "wrist" in k:
-                    img_wrist = Image.fromarray(rlds_batch["observation"][k][0])
-                    pixel_values_wrist = self.image_transform(img_wrist)
-                    all_wrist_pixels.append(pixel_values_wrist)
-            return_dict["pixel_values_wrist"] = torch.cat(all_wrist_pixels, dim=0)
+                if "wrist" in k or "secondary" in k:
+                    img_extra = Image.fromarray(rlds_batch["observation"][k][0])
+                    pixel_values_extra = self.image_transform(img_extra)
+                    all_extra_pixels.append(pixel_values_extra)
+            return_dict["pixel_values_wrist"] = torch.cat(all_extra_pixels, dim=0)
         if self.use_proprio and "proprio" in rlds_batch["observation"]:
             proprio = rlds_batch["observation"]["proprio"]
             return_dict["proprio"] = proprio
