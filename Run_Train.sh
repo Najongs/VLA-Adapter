@@ -17,8 +17,8 @@ CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 v
     --save_latest_checkpoint_only False \
     --merge_lora_during_training False \
     --resume True \
-    --resume_step 5000 \
-    --resum_vla_path outputs/configs+needle_all+b4+lr-0.0002+lora-r64+dropout-0.0--image_aug--VLA-Adapter--needle_all----5000_chkpt \
+    --resume_step 30000 \
+    --resum_vla_path /data/public/NAS/VLA-Adapter/outputs/configs--30000_chkpt \
     --batch_size 4 \
     --grad_accumulation_steps 1 \
     --learning_rate 2e-4 \
@@ -27,3 +27,4 @@ CUDA_VISIBLE_DEVICES=0,1,2 torchrun --standalone --nnodes 1 --nproc-per-node 3 v
     --wandb_entity "najyeol99-daegu-gyeongbuk-institute-of-science-technology" \
     --wandb_project "needle_insertion" \
     --run_id_note VLA-Adapter--needle_all--$current_time
+    
